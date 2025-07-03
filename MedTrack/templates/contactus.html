@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact MedTrack</title>
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --gradient: linear-gradient(to right, #4f46e5, #0ea5e9);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Urbanist', sans-serif;
+      background: #f8f9fb;
+      color: #333;
+    }
+
+    header {
+      background: var(--gradient);
+      padding: 4rem 2rem 6rem;
+      text-align: center;
+      color: white;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin: 0;
+      animation: fadeInDown 1s ease-out;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      margin-top: 1rem;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .container {
+      background: white;
+      max-width: 800px;
+      margin: -4rem auto 3rem;
+      padding: 3rem;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 1.2s ease-in-out;
+    }
+
+    form {
+      display: grid;
+      gap: 2rem;
+    }
+
+    .form-group {
+      position: relative;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 1rem;
+      padding-top: 1.4rem;
+      font-size: 1rem;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      background: #f9fafb;
+      transition: border 0.3s;
+    }
+
+    .form-group label {
+      position: absolute;
+      left: 1rem;
+      top: 1rem;
+      font-size: 0.9rem;
+      color: #6b7280;
+      background: white;
+      padding: 0 0.3rem;
+      pointer-events: none;
+      transition: all 0.2s;
+    }
+
+    .form-group input:focus + label,
+    .form-group textarea:focus + label,
+    .form-group input:not(:placeholder-shown) + label,
+    .form-group textarea:not(:placeholder-shown) + label {
+      top: -0.7rem;
+      left: 0.8rem;
+      background: white;
+      font-size: 0.75rem;
+      color: var(--primary);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--primary);
+      outline: none;
+      background: #fff;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    button {
+      background: var(--gradient);
+      border: none;
+      color: white;
+      font-size: 1.1rem;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: linear-gradient(to right, #4338ca, #0284c7);
+    }
+
+    .info {
+      text-align: center;
+      margin-top: 3rem;
+      color: #555;
+    }
+
+    .info strong {
+      color: var(--primary);
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+
+      .container {
+        padding: 2rem;
+        margin-top: -3rem;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(40px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes fadeInDown {
+      from {opacity: 0; transform: translateY(-40px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes fadeInUp {
+      from {opacity: 0; transform: translateY(40px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Talk to Us</h1>
+  <p>We’re here to help with anything related to MedTrack.</p>
+</header>
+
+<div class="container">
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <div class="flash-message" style="margin-bottom: 1.5rem; background: #e0f2fe; border-left: 5px solid #0284c7; padding: 1rem; border-radius: 10px; color: #0369a1;">
+        {{ messages[0] }}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <form action="{{ url_for('contactus') }}" method="POST">
+    <div class="form-group">
+      <input type="text" name="name" id="name" placeholder=" " required>
+      <label for="name">Full Name</label>
+    </div>
+    <div class="form-group">
+      <input type="email" name="email" id="email" placeholder=" " required>
+      <label for="email">Email Address</label>
+    </div>
+    <div class="form-group">
+      <input type="text" name="subject" id="subject" placeholder=" " required>
+      <label for="subject">Subject</label>
+    </div>
+    <div class="form-group">
+      <textarea name="message" id="message" placeholder=" " required></textarea>
+      <label for="message">Your Message</label>
+    </div>
+    <button type="submit">Send Message</button>
+  </form>
+
+  <div class="info">
+    <p><strong>MedTrack Headquarters</strong></p>
+    <p>123 CloudCare Street, Hyderabad, India</p>
+    <p>Email: <strong>support@medtrack.ai</strong> | Phone: +91 98765 43210</p>
+    <p>We usually respond within 24 hours.</p>
+  </div>
+</div>
+
+</body>
+</html>

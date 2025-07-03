@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MEDTRACK – Smarter Medication Management</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+      color: #333;
+    }
+    .site-header {
+      background: linear-gradient(90deg, #5a7a96, #43a047);
+      padding: 1rem 0;
+      color: white;
+    }
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .header-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo-title {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .logo img {
+      height: 50px;
+      border-radius: 10px;
+    }
+    .site-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+    .site-nav a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .btn {
+      padding: 10px 20px;
+      border-radius: 25px;
+      text-decoration: none;
+      display: inline-block;
+      font-weight: 600;
+    }
+    .btn-primary {
+      background-color: white;
+      color: #1e88e5;
+    }
+    .btn-secondary {
+      background-color: #333;
+      color: white;
+    }
+
+    .hero-section {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 4rem 0;
+      align-items: center;
+    }
+    .hero-image img {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 20px;
+    }
+    .dashboard-cards {
+      flex: 1;
+      padding-left: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .card {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .card i {
+      color: #1267c9;
+      margin-bottom: 1rem;
+    }
+
+    .info-section {
+      background: linear-gradient(180deg, #e0f2f1, #ffffff);
+      padding: 4rem 0;
+      text-align: center;
+    }
+    .info-cards {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+    .info-card {
+      flex: 1 1 250px;
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+    }
+
+    .newsletter-section {
+      padding: 3rem 0;
+      background-color: #f1f8e9;
+      text-align: center;
+    }
+    .newsletter-form input {
+      padding: 10px;
+      width: 250px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-right: 10px;
+    }
+
+    .site-footer {
+      background-color: #263238;
+      color: white;
+      padding: 1.5rem 0;
+      text-align: center;
+    }
+    .site-footer a {
+      color: #90caf9;
+      text-decoration: none;
+    }
+    @media(max-width: 768px) {
+      .hero-section {
+        flex-direction: column;
+        text-align: center;
+      }
+      .dashboard-cards {
+        padding-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-flex">
+      <div class="logo-title">
+        <a href="#" class="logo">
+          <img src="https://i.ibb.co/3mc3ntcG/1.jpg" alt="MEDTRACK Logo" />
+        </a>
+        <h1 class="site-title">MEDTRACK</h1>
+      </div>
+      <nav class="site-nav">
+        <a href="{{ url_for('contactus') }}">Contact Us</a>
+        <a href="{{ url_for('aboutus') }}">About Us</a>
+        <a href="{{ url_for('appointment') }}" class="btn btn-secondary">Book Appointment</a>
+        <a href="{{ url_for('login') }}" class="btn btn-secondary">Login</a>
+        <a href="{{ url_for('signup') }}" class="btn btn-secondary">Sign Up</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <main>
+    <section class="hero-section container" id="start">
+      <div class="hero-image">
+        <img src="https://i.ibb.co/YB8fX2cN/2.jpg" alt="Medication Tracking" />
+      </div>
+      <div class="dashboard-cards">
+        <div class="card doctor-card">
+          <i class="fa-solid fa-user-doctor fa-3x"></i>
+          <h2>Doctor Dashboard</h2>
+          <p>Globally recognized doctors delivering smart, proactive, and compassionate care.</p>
+          <a href="{{ url_for('doctorreview') }}" class="btn btn-secondary">View Dashboard</a>
+        </div>
+        <div class="card patient-card">
+          <i class="fa-solid fa-pills fa-3x"></i>
+          <h2>Patient Dashboard</h2>
+          <p>Track your medications and appointments with one simple interface.</p>
+          <a href="{{ url_for('patientreview') }}" class="btn btn-secondary">View Dashboard</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Info Section -->
+    <section class="info-section">
+      <div class="container">
+        <h2>Why Choose MEDTRACK?</h2>
+        <div class="info-cards">
+          <div class="info-card">
+            <i class="fa-solid fa-shield-halved fa-2x"></i>
+            <h3>Cloud Security</h3>
+            <p>HIPAA-compliant, AWS-hosted, end-to-end encrypted data storage.</p>
+          </div>
+          <div class="info-card">
+            <i class="fa-solid fa-bell fa-2x"></i>
+            <h3>Smart Alerts</h3>
+            <p>Timely reminders to help you stay on top of every dose and checkup.</p>
+          </div>
+          <div class="info-card">
+            <i class="fa-solid fa-users fa-2x"></i>
+            <h3>Family Sharing</h3>
+            <p>Give trusted access to doctors or caregivers — securely and easily.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+      <div class="container">
+        <h2>Stay Informed</h2>
+        <p>Get health tips, platform updates, and appointment alerts directly to your inbox.</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Your email" required />
+          <button type="submit" class="btn btn-primary">Subscribe</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer" id="contact">
+    <div class="container">
+      <p>&copy; 2025 MEDTRACK. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>

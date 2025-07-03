@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us - MedTrack</title>
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --secondary: #0ea5e9;
+      --text: #2c2c2c;
+      --bg: #f1f5f9;
+      --card-bg: #ffffff;
+    }
+
+    body {
+      font-family: 'Urbanist', sans-serif;
+      margin: 0;
+      background-color: var(--bg);
+      color: var(--text);
+    }
+
+    header {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: white;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      margin: 0 auto;
+      max-width: 700px;
+      opacity: 0.9;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: -3rem auto 3rem;
+      background: var(--card-bg);
+      padding: 3rem;
+      border-radius: 20px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+      position: relative;
+      z-index: 1;
+    }
+
+    .container p {
+      line-height: 1.8;
+      font-size: 1.05rem;
+      margin-bottom: 1.5rem;
+      text-align: justify;
+    }
+
+    .highlight {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .team-section {
+      margin-top: 3rem;
+    }
+
+    .team-section h2 {
+      text-align: center;
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 2rem;
+    }
+
+    .team-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .card {
+      background-color: #eef2ff;
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      width: 220px;
+      text-align: center;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      background: #e0e7ff;
+    }
+
+    .card h3 {
+      margin: 0.5rem 0;
+      color: var(--primary);
+      font-size: 1.2rem;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #444;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.3rem;
+      }
+
+      header p {
+        font-size: 1rem;
+      }
+
+      .container {
+        padding: 2rem;
+      }
+
+      .card {
+        width: 100%;
+        max-width: 300px;
+      }
+
+      .team-grid {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Meet MedTrack</h1>
+    <p>Your trusted partner for smarter health, digital care, and intelligent medication tracking.</p>
+  </header>
+
+  <div class="container">
+    <p><span class="highlight">MedTrack</span> is an advanced, cloud-based health platform that transforms the way patients manage their medications. With built-in AI, smart reminders, and seamless doctor coordination, we’re creating a smarter future in healthcare.</p>
+
+    <p>From prescription tracking to appointment scheduling and doctor-patient communication, <span class="highlight">MedTrack</span> provides a complete digital care experience — accessible, secure, and easy to use.</p>
+
+    <p>We are built on cutting-edge AWS services like <span class="highlight">EC2</span> (scalable compute), <span class="highlight">DynamoDB</span> (fast NoSQL database), <span class="highlight">SNS</span> (notification system), and <span class="highlight">IAM</span> (robust access control) to ensure privacy, scalability, and performance.</p>
+
+    <div class="team-section">
+      <h2>Our Core Team</h2>
+      <div class="team-grid">
+        <div class="card">
+          <h3>Akash</h3>
+          <p>Founder & AI Engineer</p>
+        </div>
+        <div class="card">
+          <h3>Dr. v kanaka durga</h3>
+          <p>Chief Medical Advisor</p>
+        </div>
+        <div class="card">
+          <h3>Ramesh</h3>
+          <p>Lead Backend Developer</p>
+        </div>
+        <div class="card">
+          <h3>jyothi</h3>
+          <p>UX & Frontend Designer</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
+
