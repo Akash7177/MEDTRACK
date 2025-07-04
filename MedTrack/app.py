@@ -43,7 +43,7 @@ def send_local_email(to_email, subject, body):
     except Exception as e:
         print(f"Email sending failed: {e}")
 
-SNS_TOPIC_ARN = "arn:aws:sns:ap-south-1:123456789012:MedTrackNotifications"
+SNS_TOPIC_ARN = "arn:aws:sns:us-east-1:879381270777:MedTrackNotifications"
 sns = boto3.client('sns', region_name='us-east-1a')
 def send_sns_email(subject, message):
     try:
