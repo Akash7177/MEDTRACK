@@ -8,9 +8,9 @@ import smtplib
 from email.mime.text import MIMEText
 
 app = Flask(__name__)
-app.secret_key = 'sreeusha790'
+app.secret_key = 'temp_secret_123!@#xyz987'
 
-USE_DYNAMODB = False  # Set to True when deploying on AWS
+USE_DYNAMODB = True  # Set to True when deploying on AWS
 AWS_REGION = 'us-east-1a'
 
 if USE_DYNAMODB:
@@ -44,7 +44,7 @@ def send_local_email(to_email, subject, body):
         print(f"Email sending failed: {e}")
 
 SNS_TOPIC_ARN = "arn:aws:sns:ap-south-1:123456789012:MedTrackNotifications"
-sns = boto3.client('sns', region_name=AWS_REGION)
+sns = boto3.client('sns', region_name='us-east-1a')
 def send_sns_email(subject, message):
     try:
         sns.publish(
@@ -120,11 +120,16 @@ def patientreview():
 def signup():
     if request.method == 'POST':
         data = {k: request.form[k] for k in ['name', 'email', 'password', 'phone', 'role', 'reminder']}
+        
         users = load_users()
         if data['email'] in users:
             flash("Email already exists", "error")
             return redirect(url_for('signup'))
-        db['users'][data['email']] = data
+
+        if USE_DYNAMODB:
+            users_table.put_item(Item=data)
+        else:
+            db['users'][data['email']] = data
 
         subject = "🎉 Welcome to MedTrack!"
         message = f"Hi {data['name']},\n\nYou have successfully registered in the MedTrack app.\n\nStay healthy!"
@@ -134,14 +139,25 @@ def signup():
         return redirect(url_for('login'))
     return render_template('signup.html')
 
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        email, password = request.form['email'], request.form['password']
-        user = db['users'].get(email)
+        email = request.form['email']
+        password = request.form['password']
+
+        users = load_users()
+        user = users.get(email)
+
         if user and user['password'] == password:
-            session.update({"email": email, "role": user['role'], "name": user['name'], "phone": user.get('phone', '')})
+            session.update({
+                "email": email,
+                "role": user['role'],
+                "name": user['name'],
+                "phone": user.get('phone', '')
+            })
             return redirect(url_for(f"{user['role']}dashboard"))
+        
         flash("Invalid credentials", "error")
     return render_template('login.html')
 
@@ -371,4 +387,4 @@ def load_prescriptions():
     else:
         return db['prescriptions']
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
